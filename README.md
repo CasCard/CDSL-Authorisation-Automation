@@ -36,6 +36,9 @@ Once you have completed the setup opens a new terminal in the directory containi
 
 ```python authorisation.py```
 
+## Issues
+Feel free to create a new issue in cause of any trouble will be happy to resolve.
+
 ## Contributing
 Pull requests are welcome.
 ## License
