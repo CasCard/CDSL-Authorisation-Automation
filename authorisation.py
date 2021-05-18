@@ -10,6 +10,7 @@ import easyimap as e
 import email.utils
 import bs4 as bs
 from bs4 import NavigableString, Tag
+import re
 from_address=""
 
 KITE_URL="https://kite.zerodha.com/"
@@ -17,6 +18,7 @@ HOLDINGS_URL="https://kite.zerodha.com/holdings"
 
 message=""
 OTP=0
+pattern='(\d{2}):(\d{2}):(\d{2})'
 
 option=Options()
 
@@ -51,19 +53,35 @@ driver.implicitly_wait(60)
 windows_after=driver.window_handles[1]
 driver.switch_to.window(windows_after)
 driver.implicitly_wait(60)
-time.sleep(5)
+time.sleep(3)
 driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/button").click()
-time.sleep(5)
+time.sleep(3)
 driver.find_element_by_id("txtPIN").send_keys(config.CDSL_PIN)
 driver.find_element_by_id("btnCommit").click()
 driver.implicitly_wait(60)
 
+current_time=time.localtime()
+current_minute=int(time.strftime("%M", current_time))
+current_second=int(time.strftime("%S", current_time))
+total_seconds=(current_minute*60)+current_second
+print("Execution time")
+print(current_time,total_seconds)
+recieved=False
 driver.switch_to.window(windows_before)
+server=e.connect("imap.gmail.com", config.GMAIL_USERNAME, config.GMAIL_PASSWORD)
 while from_address != "edis@cdslindia.co.in":
-    server=e.connect("imap.gmail.com", config.GMAIL_USERNAME, config.GMAIL_PASSWORD)
-    message = server.mail(server.listids()[0])
-    from_address=email.utils.parseaddr(message.from_addr)[1]
-    print(from_address)
+    message=server.listup(1)[0]
+    print(message)
+    time_of_new_email=message.date
+    match = re.search(pattern, str(time_of_new_email))
+    new_email_second=(int(match.group()[3:5])*60)+int(match.group()[6:9])
+    print(new_email_second)
+    if new_email_second>total_seconds:
+        print(match.group())
+        # message = server.mail(server.listids()[0])
+        from_address=email.utils.parseaddr(message.from_addr)[1]
+        print(from_address)
+        break
 
 print(message)
 
@@ -81,12 +99,14 @@ for br in soup.findAll('br'):
             OTP=text
             break
 print(OTP)
+driver.implicitly_wait(60)
 driver.switch_to.window(windows_after)
 driver.implicitly_wait(60)
 driver.find_element_by_id("OTP").send_keys(OTP)
+driver.implicitly_wait(60)
 driver.find_element_by_id("VerifyOTP").click()
 driver.implicitly_wait(60)
-time.sleep(1)
+time.sleep(5)
 print("Success")
 driver.quit()
 
