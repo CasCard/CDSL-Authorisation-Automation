@@ -1,5 +1,3 @@
-# CDSL Authorisation Automation
-
 ## Setup
 
 ### 1. Download Chrome Web Driver
@@ -29,6 +27,8 @@ Enter your ``` Gmail```,```Kite```,```CDSL``` username and password in the requi
 
 Note: In order to successfully perform automation you need to disable 2 Factor Authentication of Gmail at [myaccount.google.com](https://myaccount.google.com/) otherwise the script would fail.
 Also if Kite is configured for 2FA also the process will be unsuccessful.
+
+**Never share ```config.py``` with anyone**
    
 ### 5. Usage
 
@@ -36,9 +36,7 @@ Once you have completed the setup opens a new terminal in the directory containi
 
 ```python authorisation.py```
 
-```
 ## Contributing
 Pull requests are welcome.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
- 
