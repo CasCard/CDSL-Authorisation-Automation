@@ -18,6 +18,8 @@ Download all the files present in this repository and place them is a separate f
 
 Open a new terminal in the same directory and install necessary packages with the following command
 
+```.\venv\Scripts\activate```
+
 ``` pip install -r requirements.txt```
 
 ### 4. Configuring Credentials
@@ -33,6 +35,8 @@ Also if Kite is configured for 2FA also the process will be unsuccessful.
 ### 5. Usage
 
 Once you have completed the setup opens a new terminal in the directory containing the required files and type:
+
+```.\venv\Scripts\activate```
 
 ```python authorisation.py```
 
