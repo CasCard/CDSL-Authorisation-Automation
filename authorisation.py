@@ -97,6 +97,7 @@ total_seconds=total_seconds-5
 server=e.connect("imap.gmail.com", config.GMAIL_USERNAME, config.GMAIL_PASSWORD)
 
 while from_address != "edis@cdslindia.co.in":
+    server = e.connect("imap.gmail.com", config.GMAIL_USERNAME, config.GMAIL_PASSWORD)
     message=server.listup(1)[0]
     time_of_new_email=message.date
     match = re.search(pattern, str(time_of_new_email))
@@ -104,10 +105,12 @@ while from_address != "edis@cdslindia.co.in":
 
     # Checking for latest email from the CDSL
     if new_email_second>total_seconds:
-        # message = server.mail(server.listids()[0])
         from_address=email.utils.parseaddr(message.from_addr)[1]
         print(from_address)
-        break
+        if from_address == "edis@cdslindia.co.in":
+            break
+        else:
+            continue
 
 print(message)
 
