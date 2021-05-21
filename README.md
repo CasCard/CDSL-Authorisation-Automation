@@ -18,8 +18,6 @@ Download all the files present in this repository and place them is a separate f
 
 Open a new terminal in the same directory and install necessary packages with the following command
 
-```.\venv\Scripts\activate```
-
 ``` pip install -r requirements.txt```
 
 ### 4. Configuring Credentials
@@ -27,18 +25,18 @@ Open a new terminal in the same directory and install necessary packages with th
 Open ```config.py``` in a text/code editor.\
 Enter your ``` Gmail```,```Kite```,```CDSL``` username and password in the required fields.
 
-Note: In order to successfully perform automation you need to disable 2 Factor Authentication of Gmail at [myaccount.google.com](https://myaccount.google.com/) otherwise the script would fail.
-Also if Kite is configured for 2FA also the process will be unsuccessful.
+Note: In order to successfully perform automation you need to disable 2 Factor Authentication of Gmail at [myaccount.google.com](https://myaccount.google.com/security) otherwise the script would fail.
+Also if Kite is configured for 2FA with Authenticator also the process will be unsuccessful.
 
 **Never share ```config.py``` with anyone**
    
 ### 5. Usage
 
-Once you have completed the setup opens a new terminal in the directory containing the required files and type:
-
-```.\venv\Scripts\activate```
+Once you have completed the setup opens a new terminal in the same directory containing the required files and type:
 
 ```python authorisation.py```
+
+you only needed to type this command whenever authorisation is necessary
 
 ## Issues
 Feel free to create a new issue in cause of any trouble will be happy to resolve.
