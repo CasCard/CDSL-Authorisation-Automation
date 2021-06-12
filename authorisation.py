@@ -72,11 +72,16 @@ driver.implicitly_wait(60)
 # Switching to CDSL page
 cdsl_window=driver.window_handles[1]
 driver.switch_to.window(cdsl_window)
-driver.implicitly_wait(60)
-time.sleep(3)
+driver.implicitly_wait(120)
+time.sleep(4)
 
-# Selecting "Continue to CDSL"
-driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/button").click()
+try:
+    WebDriverWait(driver, 8).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div[2]/div[2]/button")))
+    # Selecting "Continue to CDSL"
+    driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[2]/button").click()
+except TimeoutException:
+    print("CDSL Page Not Loaded")
+    
 time.sleep(3)
 
 # Entering TPIN
