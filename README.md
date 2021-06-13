@@ -1,3 +1,14 @@
+# Update : SMS Based Verification
+
+After few usage I came to know that e-mail based verification not much faster.So I have create a new script which actually fetches OTP from direct mobile SMS.
+This is done using ```https://messages.google.com/``` . A service by google in which you can view you mobile SMS in your browser.
+
+For the CDSL verification SMS I have created a separate repository ,so that for people who still need email based can use this.
+
+SMS based repository is at : [https://github.com/CasCard/CDSL-Authorisation-Automation-SMS](https://github.com/CasCard/CDSL-Authorisation-Automation-SMS)
+
+You can read the instructions there . :)
+
 ## Setup
 
 ### 1. Download Chrome Web Driver
